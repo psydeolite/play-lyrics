@@ -11,7 +11,7 @@ ci='clientid'
 cs='clientsecret'
 
 #replace with actual stuff
-ccm=SpotifyClientCredentials(client_id='client-id', client_secret='client-secret')
+ccm=SpotifyClientCredentials(client_id='', client_secret='')
 token=ccm.get_access_token()
 sp=spotipy.Spotify(auth=token)
 
@@ -65,8 +65,10 @@ def get_new_albums():
         albinf['tracks']=tracks;
         albums_all.append(albinf)
 
-    #print albums_all[0]
+    print albums_all[0]
     return albums_all
 
 
-#get_new_albums()
+
+
+get_new_albums()
