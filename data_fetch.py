@@ -11,7 +11,7 @@ ci='clientid'
 cs='clientsecret'
 
 #replace with actual stuff
-ccm=SpotifyClientCredentials(client_id='client-id', client_secret='client-secret')
+ccm=SpotifyClientCredentials(client_id='ba8d2826c2824677b73ebff71ca27785', client_secret='f4e3f64683e84da8a616c6da083fa287')
 token=ccm.get_access_token()
 sp=spotipy.Spotify(auth=token)
 
@@ -38,6 +38,7 @@ def get_new_albums():
     nr=requests.post(url2, headers=headers)
     print nr
     '''
+    print 'INSIIIDE'
     data=sp.new_releases(country=None, limit=20, offset=0)
     albums_data=data['albums']['items']
     #print albums_data[0].keys()
@@ -61,7 +62,10 @@ def get_new_albums():
         albinf['name']=str(albdat['name'])
         albinf['artists']=str(albdat['artists'][0]['name'])
         albinf['image']=str(albdat['images'][0]['url'])
+        albinf['tracks']=tracks;
         albums_all.append(albinf)
+
+    print albums_all[0]
     return albums_all
     
 get_new_albums()
