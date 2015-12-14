@@ -8,12 +8,21 @@ app=Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/search')
+def search():
+    print request.args
+    name=request.args.get('toSearch')
+    print name
+    lyricinfos=data_fetch.get_lyrics('we are the champions')
+    return json.dumps(lyricinfos)
+
 @app.route('/update')
 def update():
     print 'boutta fetch'
-    infos=data_fetch.get_new_albums()
+    albuminfos=data_fetch.get_new_albums()
+    
     print 'jus fetchd'
-    return json.dumps(infos)
+    return json.dumps(albuminfos)
 
 if __name__ == "__main__":
     app.debug = True

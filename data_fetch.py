@@ -13,7 +13,7 @@ cs='clientsecret'
 #replace with actual stuff
 ccm=SpotifyClientCredentials(client_id='', client_secret='')
 token=ccm.get_access_token()
-#sp=spotipy.Spotify(auth=token)
+sp=spotipy.Spotify(auth=token)
 
 
 def get_new_albums():
@@ -68,15 +68,25 @@ def get_new_albums():
     print albums_all[0]
     return albums_all
 
-def get_lyrics(title):
+def get_lyrics(titler):
+    title=titler.replace(' ','%20');
     print title
-    id_url='http://api.musixmatch.com/ws/1.1/track.search?apikey=%s&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1'
+    
+    getid_url='http://api.musixmatch.com/ws/1.1/track.search?apikey=%s&q_track=%s&format=json&page_size=1&f_has_lyrics=1'
     key=''
-    url = url % (key)
+    url = getid_url % (key, title)
     request = urllib2.urlopen(url)
     result=request.read()
     r=json.loads(result)
-    print r
+    track_id=r['message']['body']['track_list'][0]['track']['track_id']
 
-#get_lyrics('we are the champions')
-get_new_albums()
+    getlyrics_url='http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=%s&track_id=%s'
+    url2=getlyrics_url % (key, track_id);
+    request=urllib2.urlopen(url2)
+    result=request.read()
+    r=json.loads(result)
+    lyrics= r['message']['body']['lyrics']['lyrics_body']
+    return lyrics
+
+#get_lyrics('karma police')
+#get_new_albums()
