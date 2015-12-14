@@ -25,11 +25,23 @@ var upAlbums = function upAlbums() {
 	var allTracks=info[albumNo]['tracks'];
 	console.log(info[albumNo]);
 	var albumArt=info[albumNo]['image'];
-	var aImg=document.getElementsByTagName("img");
-	console.log(aImg);
-	var att=aImg.getAttribute("src");
-	att.value=albumArt;
-	aImg.setAttributeNode(att);
+	console.log(albumArt);
+	var im=document.getElementById("art");
+	console.log('doneim');
+	console.log(im);
+	im.setAttribute('src', im.getAttribute('src').replace("https://media.giphy.com/media/d2YZa5B3lEAH1soo/giphy.gif", albumArt));
+
+
+
+	//im.src=albumArt;
+	console.log('setsrc');
+	//console.log(im.src);
+	//var aImg=document.getElementsByTagName("img");
+	//document.getElementById("img").src=albumArt;
+	//console.log(aImg);
+	//var att=aImg.getAttribute("src");
+	//att.value=albumArt;
+	//aImg.setAttributeNode(att);
 
 	//document.setAttribute('src', albumArt);
 
@@ -37,7 +49,7 @@ var upAlbums = function upAlbums() {
 	//oImg.setAttribute('height', '1px');
 	//oImg.setAttribute('width', '1px');
 	//document.getElementById('albumart').innerHTML=aImg;
-	console.log(albumArt);
+	//console.log(albumArt);
 	var currentTrack=info[albumNo]['tracks'][trackNo];
 	console.log('madecurrentrack');
 	var currentTrackName=currentTrack['name'];
@@ -65,8 +77,8 @@ var upAlbums = function upAlbums() {
 };
 
 //upAlbums();
-var interval=setInterval(upAlbums, 3000);
+//var interval=setInterval(upAlbums, 3000);
 document.getElementById("switch").addEventListener("click", upAlbums);
-document.getElementById("stop").addEventListener("click", function(e) {
-    clearInterval(interval);
-});
+//document.getElementById("stop").addEventListener("click", function(e) {
+    //clearInterval(interval);
+//});
