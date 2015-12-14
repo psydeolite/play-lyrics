@@ -31,8 +31,6 @@ var upAlbums = function upAlbums() {
 	console.log(im);
 	im.setAttribute('src', im.getAttribute('src').replace("https://media.giphy.com/media/d2YZa5B3lEAH1soo/giphy.gif", albumArt));
 
-
-
 	//im.src=albumArt;
 	console.log('setsrc');
 	//console.log(im.src);
@@ -60,6 +58,8 @@ var upAlbums = function upAlbums() {
 	var currentTrackName=currentTrack['name'];
 	console.log('gotname');
 	console.log(currentTrackName);
+	var others=document.getElementByID("albums");
+	others.setAttribute('p',others.getAttribute('p').replace("Artist and Track", (artist + currentTrackName);
 	albs.innerHTML=currentTrackName+'<br>';
 	trackNo++;
 	if (trackNo==allTracks.length) {
