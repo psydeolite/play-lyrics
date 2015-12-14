@@ -13,7 +13,7 @@ cs='clientsecret'
 #replace with actual stuff
 ccm=SpotifyClientCredentials(client_id='', client_secret='')
 token=ccm.get_access_token()
-sp=spotipy.Spotify(auth=token)
+#sp=spotipy.Spotify(auth=token)
 
 
 def get_new_albums():
@@ -68,7 +68,15 @@ def get_new_albums():
     print albums_all[0]
     return albums_all
 
+def get_lyrics(title):
+    print title
+    id_url='http://api.musixmatch.com/ws/1.1/track.search?apikey=%s&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1'
+    key=''
+    url = url % (key)
+    request = urllib2.urlopen(url)
+    result=request.read()
+    r=json.loads(result)
+    print r
 
-
-
+#get_lyrics('we are the champions')
 get_new_albums()
