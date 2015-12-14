@@ -42,6 +42,11 @@ var upAlbums = function upAlbums() {
 	//var att=aImg.getAttribute("src");
 	//att.value=albumArt;
 	//aImg.setAttributeNode(att);
+	/*var aImg=document.getElementByID("img");
+	console.log(aImg);
+	var att=aImg.getAttribute("src");
+	att.value=albumArt;
+	aImg.setAttributeNode(att);*/
 
 	//document.setAttribute('src', albumArt);
 
