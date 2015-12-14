@@ -25,9 +25,9 @@ var upAlbums = function upAlbums() {
 	var allTracks=info[albumNo]['tracks'];
 	console.log(info[albumNo]);
 	var albumArt=info[albumNo]['image'];
-	var aImg=document.getElementById('img');
+	var aImg=document.getElementsByTagName("img");
 	console.log(aImg);
-	aImg.setAttribute('src', albumArt);
+	document.setAttribute('src', albumArt);
 	//aImg.setAttribute('alt', 'na');
 	//oImg.setAttribute('height', '1px');
 	//oImg.setAttribute('width', '1px');
