@@ -11,7 +11,8 @@ ci='clientid'
 cs='clientsecret'
 
 #replace with actual stuff
-ccm=SpotifyClientCredentials(client_id='ba8d2826c2824677b73ebff71ca27785', client_secret='f4e3f64683e84da8a616c6da083fa287')
+
+ccm=SpotifyClientCredentials(client_id='', client_secret='')
 token=ccm.get_access_token()
 sp=spotipy.Spotify(auth=token)
 
