@@ -74,7 +74,7 @@ def get_lyrics(titler):
     print title
     
     getid_url='http://api.musixmatch.com/ws/1.1/track.search?apikey=%s&q_track=%s&format=json&page_size=1&f_has_lyrics=1'
-    key='dc97759f8ffc8a29dd361abfd15f8952'
+    key=''
     url = getid_url % (key, title)
     request = urllib2.urlopen(url)
     result=request.read()
