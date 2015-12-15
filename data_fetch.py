@@ -11,7 +11,7 @@ ci='clientid'
 cs='clientsecret'
 
 #replace with actual stuff
-ccm=SpotifyClientCredentials(client_id='', client_secret='')
+ccm=SpotifyClientCredentials(client_id='ba8d2826c2824677b73ebff71ca27785', client_secret='f4e3f64683e84da8a616c6da083fa287')
 token=ccm.get_access_token()
 sp=spotipy.Spotify(auth=token)
 
@@ -73,7 +73,7 @@ def get_lyrics(titler):
     print title
     
     getid_url='http://api.musixmatch.com/ws/1.1/track.search?apikey=%s&q_track=%s&format=json&page_size=1&f_has_lyrics=1'
-    key=''
+    key='dc97759f8ffc8a29dd361abfd15f8952'
     url = getid_url % (key, title)
     request = urllib2.urlopen(url)
     result=request.read()
