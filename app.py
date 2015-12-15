@@ -7,17 +7,19 @@ app=Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('indexboot.html')
 
-@app.route('/search')
+@app.route('/search', methods=['GET'])
 def search():
-    print request.args
+    #print request.form
     #name=request.args.get('toSearch')
     #print name
-    form = cgi.FieldStorage()
-    searcher = form["title"]
-    print searcher
+    #form = cgi.FieldStorage()
+    #searcher = form["search"]
+    #print searcher
     #lyricinfos=data_fetch.get_lyrics('we are the champions')
+    print 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq'
+    print request.args.get("searchKey")
     lyricinfos=data_fetch.get_lyrics(searcher)
     return json.dumps(lyricinfos)
 
