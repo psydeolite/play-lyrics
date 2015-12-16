@@ -11,33 +11,18 @@ ci='clientid'
 cs='clientsecret'
 
 #replace with actual stuff
-
 ccm=SpotifyClientCredentials(client_id='', client_secret='')
+
 token=ccm.get_access_token()
 sp=spotipy.Spotify(auth=token)
 
 
 def get_new_albums():
-    ''' TRIED TO DO PLAYLISTS, TO NO AVAIL :'(
-    plays=sp.featured_playlists(locale=None, country=None, timestamp=None, limit=20, offset=0)['playlists']['items']
-    play1=plays[0]
-    tracks=play1['tracks']
-    url2=tracks['href']
-    print url2
-    url='https://accounts.spotify.com/api/token'
-    print url
-    global ci, cs
-    unenc=ci+':'+cs
-    enc=base64.b64encode(ci+':'+cs)
-    global token
-    params={'grant_type':'client_credentials'}
+    '''
+    Fetches new album data from Spotify.
     
-    r=requests.post(url, data=params, auth=(ci, cs))
-    token2=r.json()['access_token']
-    print token2
-    headers={'Authorization':'Bearer '+token2}
-    nr=requests.post(url2, headers=headers)
-    print nr
+    Returns list of albums. Each album is a dictionary containing values for the name, artist, album art, and a list of tracks. Each track in the list is a dictionary containing values for the name, artist, and Spotify URI (to be implemented with playing tracks). 
+
     '''
     print 'INSIIIDE'
     data=sp.new_releases(country=None, limit=20, offset=0)
@@ -70,6 +55,10 @@ def get_new_albums():
     return albums_all
 
 def get_lyrics(titler):
+    '''
+    Fetches lyrics using MusiXMatch API.
+    Returns string of lyrics, not formatted.
+    '''
     title=titler.replace(' ','%20');
     print title
     
@@ -89,5 +78,20 @@ def get_lyrics(titler):
     lyrics= r['message']['body']['lyrics']['lyrics_body']
     return lyrics
 
+def get_stream(name):
+    '''
+    To be implemented for streaming the tracks, would fetch data using 7Digital API.
+    '''
+    title=name.replace(' ','%20')
+    getid_url='http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=%s&country=GB&pagesize=2'
+    key=''
+    url=getid_url % (title, key)
+    request=urllib2.urlopen(url)
+    result=request.read()
+    print result
+    #r=json.loads(result)
+    #print r
+
+#get_stream('creep')
 #get_lyrics('karma police')
 #get_new_albums()

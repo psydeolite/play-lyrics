@@ -1,9 +1,11 @@
 console.log('js');
 
 var albumNo=0;
-var trackNo=9;
+var trackNo=0;
 var upAlbums = function upAlbums() {
     console.log('upAlbums');
+    //console.log(document.getElementById('search'));
+    console.log('SOMETHING');
     $.get("/update", function(e) {
 	console.log('update');
 	var info=JSON.parse(e);
@@ -43,11 +45,14 @@ var upAlbums = function upAlbums() {
     });
 };
 
+//document.getElementById("switch").addEventListener("click", upAlbums);
+
 var getLyrics=function getLyrics() {
     console.log('getLyrics');
     var searchKey=$('#searchKey').val();
     console.log(searchKey);
     var url = '/search?searchKey='+searchKey;
+    $('#lyrics').text('Loading lyrics...');
     $.get(url, function(e) {
 	console.log('search');
 	
@@ -67,10 +72,12 @@ var getLyrics=function getLyrics() {
     });
 };
 
-//upAlbums();
-var interval=setInterval(upAlbums, 1000);
-document.getElementById("switch").addEventListener("click", upAlbums);
 document.getElementById("search").addEventListener("click", getLyrics);
+
+upAlbums();
+interval=setInterval(upAlbums, 1000);
+
+
 //document.getElementById("stop").addEventListener("click", function(e) {
 //    clearInterval(interval);
 //});
