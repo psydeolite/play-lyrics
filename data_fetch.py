@@ -11,7 +11,7 @@ ci='clientid'
 cs='clientsecret'
 
 #replace with actual stuff
-ccm=SpotifyClientCredentials(client_id='', client_secret='')
+ccm=SpotifyClientCredentials(client_id='ba8d2826c2824677b73ebff71ca27785', client_secret='f4e3f64683e84da8a616c6da083fa287')
 
 token=ccm.get_access_token()
 sp=spotipy.Spotify(auth=token)
@@ -41,17 +41,23 @@ def get_new_albums():
         tracks=[]
         for track in trackdat:
             track_meta={}
+            print 'track name: '+str(track['name'])
             track_meta['name']=str(track['name'])
-            track_meta['artists']=str(track['artists'][0]['name'])            
+            print 'track artists: '+str(track['artists'][0]['name'])
+            track_meta['artists']=str(track['artists'][0]['name'])
             track_meta['uri']=str(track['uri'])
             tracks.append(track_meta)
-        albinf['name']=str(albdat['name'])
+        print 'boutta print albdat'
+        print albdat['name']
+        #print str(albdat['name'])
+        #albinf['name']=str(albdat['name'])
+        albinf['name']=albdat['name']
         albinf['artists']=str(albdat['artists'][0]['name'])
         albinf['image']=str(albdat['images'][0]['url'])
         albinf['tracks']=tracks;
         albums_all.append(albinf)
 
-    print albums_all[0]
+    #print albums_all[0]
     return albums_all
 
 def get_lyrics(titler):
@@ -84,7 +90,7 @@ def get_stream(name):
     '''
     title=name.replace(' ','%20')
     getid_url='http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=%s&country=GB&pagesize=2'
-    key=''
+    key='dc97759f8ffc8a29dd361abfd15f8952'
     url=getid_url % (title, key)
     request=urllib2.urlopen(url)
     result=request.read()
@@ -94,4 +100,4 @@ def get_stream(name):
 
 #get_stream('creep')
 #get_lyrics('karma police')
-#get_new_albums()
+get_new_albums()
